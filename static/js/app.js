@@ -96,10 +96,6 @@ function updateTitle(page){
         "AI Homework Helper",
 
 
-        settings:
-        "Settings"
-
-
     };
 
 

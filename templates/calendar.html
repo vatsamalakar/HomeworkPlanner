@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}StudyFlow | Calendar{% endblock %}
+{% block title %}Homework Racer | Calendar{% endblock %}
 {% block page_title %}Calendar{% endblock %}
 
 {% block content %}
@@ -10,15 +10,15 @@
             {% for task in tasks %}
                 <div class="task-row">
                     <div>
-                        <strong>{{ task.title }}</strong><br>
-                        <small>{{ task.due_date }}</small>
+                        <strong>{{ task.title }}</strong>
+                        <p class="task-meta">Due date: {{ task.due_date }}</p>
                     </div>
-                    <span class="pill">{{ task.priority|title }}</span>
+                    <div class="pill {{ task.priority }}">{{ task.priority|title }}</div>
                 </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>No deadlines yet. Add your first assignment to build this view.</p>
+        <p>No deadlines yet. Add your first assignment on the Homework page.</p>
     {% endif %}
 </div>
 {% endblock %}

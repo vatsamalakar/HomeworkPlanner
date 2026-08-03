@@ -1,45 +1,58 @@
 {% extends 'base.html' %}
-{% block title %}StudyFlow | Homework{% endblock %}
-{% block page_title %}Homework{% endblock %}
+{% block title %}Homework Racer | Homework{% endblock %}
+{% block page_title %}Homework Planner{% endblock %}
 
 {% block content %}
-<div class="card-grid">
-    <div class="info-card">
-        <h3>Add a task</h3>
+<div class="page-grid">
+    <div class="info-card form-card">
+        <h3>Log a new assignment</h3>
         <form method="post" class="stacked-form">
-            <input type="text" name="title" placeholder="Homework title" required>
+            <label>Homework title</label>
+            <input type="text" name="title" placeholder="Enter assignment title" required>
+            <label>Due date</label>
             <input type="date" name="due_date">
+            <label>Priority</label>
             <select name="priority">
-                <option value="low">Low priority</option>
-                <option value="medium" selected>Medium priority</option>
-                <option value="high">High priority</option>
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
             </select>
-            <button type="submit" class="primary-btn">Save task</button>
+            <button type="submit" class="primary-btn">Add assignment</button>
         </form>
     </div>
-    <div class="info-card">
-        <h3>Progress</h3>
-        <p><strong>Total:</strong> {{ stats.total }}</p>
-        <p><strong>Completed:</strong> {{ stats.completed }}</p>
-        <p><strong>Pending:</strong> {{ stats.pending }}</p>
+    <div class="info-card summary-card">
+        <h3>Current load</h3>
+        <div class="summary-row">
+            <span>Total</span>
+            <strong>{{ stats.total }}</strong>
+        </div>
+        <div class="summary-row">
+            <span>Completed</span>
+            <strong>{{ stats.completed }}</strong>
+        </div>
+        <div class="summary-row">
+            <span>Pending</span>
+            <strong>{{ stats.pending }}</strong>
+        </div>
+        <p class="muted">Use the list below to mark work complete or remove it when it's finished.</p>
     </div>
 </div>
 
-<div class="info-card">
-    <h3>Your tasks</h3>
+<div class="info-card tasks-card">
+    <h3>Assignments</h3>
     {% if tasks %}
         <div class="task-list">
             {% for task in tasks %}
                 <div class="task-row">
                     <div>
-                        <strong>{{ task.title }}</strong><br>
-                        <small>Due: {{ task.due_date }} • {{ task.priority|title }}</small>
+                        <strong>{{ task.title }}</strong>
+                        <p class="task-meta">Due: {{ task.due_date }} • {{ task.priority|title }}</p>
                     </div>
                     <div class="action-row">
-                        <form method="post" action="{{ url_for('toggle_task', task_id=task.id) }}">
+                        <form method="post" action="{{ url_for('toggle_task', task_id=task['id']) }}">
                             <button type="submit" class="ghost-btn">{{ 'Undo' if task.completed else 'Done' }}</button>
                         </form>
-                        <form method="post" action="{{ url_for('delete_task', task_id=task.id) }}">
+                        <form method="post" action="{{ url_for('delete_task', task_id=task['id']) }}">
                             <button type="submit" class="ghost-btn">Remove</button>
                         </form>
                     </div>
@@ -47,7 +60,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>No tasks yet. Add your first assignment.</p>
+        <p>No assignments found. Add one above to get started.</p>
     {% endif %}
 </div>
 {% endblock %}

@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
-{% block title %}StudyFlow | AI Helper{% endblock %}
+{% block title %}Homework Racer | AI Helper{% endblock %}
 {% block page_title %}AI Helper{% endblock %}
 
 {% block content %}
-<div class="info-card">
+<div class="info-card ai-card">
     <h3>Ask Grok AI</h3>
-    <p>Use your Grok key to get help planning homework, breaking down assignments, or building a study plan.</p>
+    <p>Get help turning homework into a clear plan, breaking down tasks, or staying on top of your schedule.</p>
     <form method="post" class="stacked-form">
-        <input type="text" name="question" placeholder="Ask for a study plan or homework tip" required>
+        <label>Question</label>
+        <input type="text" name="question" placeholder="Describe your homework question" required>
         <button type="submit" class="primary-btn">Ask</button>
     </form>
     {% if response_text %}
         <div class="assistant-response">
-            <h4>Response</h4>
+            <h4>AI response</h4>
             <p>{{ response_text }}</p>
         </div>
     {% endif %}

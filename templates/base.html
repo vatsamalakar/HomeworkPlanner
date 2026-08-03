@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}StudyFlow{% endblock %}</title>
+    <title>{% block title %}Homework Racer{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -11,20 +11,18 @@
     <div class="app-shell">
         <aside class="sidebar">
             <div class="brand">
-                <i class="fa-solid fa-book-open"></i>
-                <div>
-                    <h1>StudyFlow</h1>
-                    <p>Homework planner</p>
+                <div class="brand-icon"><i class="fa-solid fa-car-side"></i></div>
+                <div class="brand-copy">
+                    <h1>Homework Racer</h1>
+                    <p>Drive through assignments</p>
                 </div>
             </div>
             <nav class="nav-links">
-                <a href="{{ url_for('index') }}"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-                <a href="{{ url_for('homework') }}"><i class="fa-solid fa-list-check"></i> Homework</a>
-                <a href="{{ url_for('calendar') }}"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
-                <a href="{{ url_for('timer') }}"><i class="fa-solid fa-clock"></i> Pomodoro</a>
-                <a href="{{ url_for('ai') }}"><i class="fa-solid fa-robot"></i> AI Helper</a>
-                <a href="{{ url_for('settings') }}"><i class="fa-solid fa-gear"></i> Settings</a>
+                <a href="{{ url_for('index') }}" class="{% if request.path == url_for('index') %}active{% endif %}"><i class="fa-solid fa-road"></i> Home</a>
+                <a href="{{ url_for('dashboard') }}" class="{% if request.path == url_for('dashboard') %}active{% endif %}"><i class="fa-solid fa-tachometer-alt"></i> Dashboard</a>
+                <a href="{{ url_for('homework') }}" class="{% if request.path == url_for('homework') %}active{% endif %}"><i class="fa-solid fa-list-check"></i> Homework</a>
+                <a href="{{ url_for('calendar') }}" class="{% if request.path == url_for('calendar') %}active{% endif %}"><i class="fa-solid fa-calendar-days"></i> Calendar</a>
+                <a href="{{ url_for('timer') }}" class="{% if request.path == url_for('timer') %}active{% endif %}"><i class="fa-solid fa-stopwatch"></i> Pomodoro</a>
             </nav>
             <button id="themeToggle" class="theme-btn" type="button"><i class="fa-solid fa-moon"></i> Dark mode</button>
         </aside>
@@ -32,10 +30,8 @@
         <main class="main-panel">
             <header class="topbar">
                 <div>
-                    <p class="eyebrow">Student workspace</p>
-                    <h2>{% block page_title %}StudyFlow{% endblock %}</h2>
+                    <h2>{% block page_title %}Homework Racer{% endblock %}</h2>
                 </div>
-                <a href="{{ url_for('homework') }}" class="primary-btn">Add task</a>
             </header>
 
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -50,16 +46,5 @@
         </main>
     </div>
 
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'dark') document.body.classList.add('dark');
-        toggle?.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            toggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i> Light mode' : '<i class="fa-solid fa-moon"></i> Dark mode';
-        });
-    </script>
 </body>
 </html>

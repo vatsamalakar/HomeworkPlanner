@@ -1,39 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}StudyFlow | Dashboard{% endblock %}
+{% block title %}Homework Racer | Dashboard{% endblock %}
 {% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="stats-grid">
-    <div class="stat-card">
-        <h3>Total tasks</h3>
-        <p class="big-number">{{ stats.total }}</p>
+<div class="overview-card">
+    <div class="overview-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+    <div>
+        <h3>Total homework assignments</h3>
+        <p class="display-number">{{ stats.total }}</p>
+        <p class="muted">This dashboard is designed to give you a quick count of all homework saved in the planner.</p>
     </div>
-    <div class="stat-card">
-        <h3>Completed</h3>
-        <p class="big-number">{{ stats.completed }}</p>
-    </div>
-    <div class="stat-card">
-        <h3>Pending</h3>
-        <p class="big-number">{{ stats.pending }}</p>
-    </div>
-</div>
-
-<div class="info-card">
-    <h3>Recent tasks</h3>
-    {% if tasks %}
-        <div class="task-list">
-            {% for task in tasks[:5] %}
-                <div class="task-row">
-                    <div>
-                        <strong>{{ task.title }}</strong><br>
-                        <small>{{ task.due_date }} • {{ task.priority|title }}</small>
-                    </div>
-                    <span class="pill">{{ 'Done' if task.completed else 'In progress' }}</span>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>No homework yet. Add your first task from the homework page.</p>
-    {% endif %}
 </div>
 {% endblock %}

@@ -90,16 +90,6 @@ def timer():
     return render_template("timer.html")
 
 
-@app.route("/ai", methods=["GET", "POST"])
-def ai():
-    response_text = ""
-    if request.method == "POST":
-        question = request.form.get("question", "").strip()
-        if question:
-            response_text = ask_grok(question)
-    return render_template("ai.html", response_text=response_text)
-
-
 def ask_grok(prompt):
     api_key = app.config.get("XAI_API_KEY", "")
     if not api_key:
@@ -119,10 +109,6 @@ def ask_grok(prompt):
     except Exception as exc:
         return f"Unable to reach Grok right now: {exc}"
 
-
-@app.route("/settings")
-def settings():
-    return render_template("settings.html")
 
 
 if __name__ == "__main__":
