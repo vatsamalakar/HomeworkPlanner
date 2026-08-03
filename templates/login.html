@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}StudyFlow | Login{% endblock %}
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+<div class="info-card auth-card">
+    <h3>Welcome back</h3>
+    <form method="post" class="stacked-form">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" class="primary-btn">Continue</button>
+    </form>
+    <p class="muted">Need an account? <a href="{{ url_for('register') }}">Create one</a>.</p>
+</div>
+{% endblock %}

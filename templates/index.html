@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudyFlow - Homework Planner</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/animations.css">
+
+
+
+<!-- Font Awesome -->
+<link 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+rel="stylesheet">
+
+
+
+<!-- FullCalendar -->
+<link 
+href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
+rel="stylesheet">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="app">
+
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+<h1 class="logo">
+
+<i class="fa-solid fa-book-open"></i>
+
+StudyFlow
+
+</h1>
+
+
+
+
+<nav>
+
+
+<button onclick="showPage('dashboard')">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</button>
+
+
+
+
+<button onclick="showPage('homework')">
+
+<i class="fa-solid fa-list-check"></i>
+
+Homework
+
+</button>
+
+
+
+
+<button onclick="showPage('calendar')">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Calendar
+
+</button>
+
+
+
+
+<button onclick="showPage('timer')">
+
+<i class="fa-solid fa-clock"></i>
+
+Pomodoro
+
+</button>
+
+
+
+
+<button onclick="showPage('ai')">
+
+<i class="fa-solid fa-robot"></i>
+
+AI Helper
+
+</button>
+
+
+
+
+<button onclick="showPage('settings')">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</button>
+
+
+
+</nav>
+
+
+
+</aside>
+
+
+
+
+
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+
+
+
+<header>
+
+
+<h2 id="pageTitle">
+
+Dashboard
+
+</h2>
+
+
+
+<button id="themeToggle">
+
+🌙
+
+</button>
+
+
+
+</header>
+
+
+
+
+
+
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="page active">
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>
+Total Homework
+</h3>
+
+
+<p id="taskCount">
+0
+</p>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>
+Completed
+</h3>
+
+
+<p id="completedCount">
+0
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h3>
+Study XP
+</h3>
+
+
+<p id="dashboardXP">
+0
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="welcome">
+
+
+<h1>
+Welcome to StudyFlow 🚀
+</h1>
+
+
+
+<p>
+Organize homework, manage deadlines,
+and study smarter.
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- HOMEWORK -->
+
+<section id="homework" class="page">
+
+
+<h1>
+Homework Manager 📝
+</h1>
+
+
+
+<div class="homework-form">
+
+
+<input 
+id="taskTitle"
+placeholder="Homework title..."
+>
+
+
+
+
+<input 
+id="taskSubject"
+placeholder="Subject..."
+>
+
+
+
+
+<input 
+id="taskDate"
+type="date"
+>
+
+
+
+
+
+<select id="taskPriority">
+
+
+<option value="Low">
+Low Priority
+</option>
+
+
+<option value="Medium">
+Medium Priority
+</option>
+
+
+<option value="High">
+High Priority
+</option>
+
+
+<option value="Urgent">
+Urgent
+</option>
+
+
+</select>
+
+
+
+
+
+<button onclick="createHomework()">
+
+Add Homework
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div id="homeworkList">
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- CALENDAR -->
+
+<section id="calendar" class="page">
+
+
+<h1>
+Calendar 📅
+</h1>
+
+
+
+<div id="calendarBox">
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- POMODORO -->
+
+<section id="timer" class="page">
+
+
+<h1>
+Pomodoro Timer ⏱️
+</h1>
+
+
+
+
+<div class="timer">
+
+
+<h2 id="timerDisplay">
+
+25:00
+
+</h2>
+
+
+
+
+<p id="timerMode">
+
+Focus Session
+
+</p>
+
+
+
+
+
+<div class="timer-buttons">
+
+
+<button onclick="startTimer()">
+
+Start
+
+</button>
+
+
+
+
+<button onclick="pauseTimer()">
+
+Pause
+
+</button>
+
+
+
+
+<button onclick="resetTimer()">
+
+Reset
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="stats-box">
+
+
+<h3>
+Today's Focus
+</h3>
+
+
+<p id="focusMinutes">
+
+0 minutes
+
+</p>
+
+
+
+
+<h3>
+XP Earned
+</h3>
+
+
+<p id="xpCount">
+
+0 XP
+
+</p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- AI HELPER -->
+
+<section id="ai" class="page">
+
+
+<h1>
+AI Homework Helper 🤖
+</h1>
+
+
+
+
+<div class="chat">
+
+
+<div id="messages">
+
+</div>
+
+
+
+
+<input 
+id="aiInput"
+placeholder="Ask Grok anything..."
+>
+
+
+
+
+<button>
+
+Send
+
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="page">
+
+
+<h1>
+Settings ⚙️
+</h1>
+
+
+
+<p>
+
+Customize your StudyFlow experience.
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- LIBRARIES -->
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+
+
+
+
+<!-- APP FILES -->
+
+<script src="js/storage.js"></script>
+
+<script src="js/app.js"></script>
+
+<script src="js/homework.js"></script>
+
+<script src="js/calendar.js"></script>
+
+<script src="js/timer.js"></script>
+
+
+
+</body>
+
+
+</html>

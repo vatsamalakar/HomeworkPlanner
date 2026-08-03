@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}StudyFlow | Homework{% endblock %}
+{% block page_title %}Homework{% endblock %}
+
+{% block content %}
+<div class="card-grid">
+    <div class="info-card">
+        <h3>Add a task</h3>
+        <form method="post" class="stacked-form">
+            <input type="text" name="title" placeholder="Homework title" required>
+            <input type="date" name="due_date">
+            <select name="priority">
+                <option value="low">Low priority</option>
+                <option value="medium" selected>Medium priority</option>
+                <option value="high">High priority</option>
+            </select>
+            <button type="submit" class="primary-btn">Save task</button>
+        </form>
+    </div>
+    <div class="info-card">
+        <h3>Progress</h3>
+        <p><strong>Total:</strong> {{ stats.total }}</p>
+        <p><strong>Completed:</strong> {{ stats.completed }}</p>
+        <p><strong>Pending:</strong> {{ stats.pending }}</p>
+    </div>
+</div>
+
+<div class="info-card">
+    <h3>Your tasks</h3>
+    {% if tasks %}
+        <div class="task-list">
+            {% for task in tasks %}
+                <div class="task-row">
+                    <div>
+                        <strong>{{ task.title }}</strong><br>
+                        <small>Due: {{ task.due_date }} • {{ task.priority|title }}</small>
+                    </div>
+                    <div class="action-row">
+                        <form method="post" action="{{ url_for('toggle_task', task_id=task.id) }}">
+                            <button type="submit" class="ghost-btn">{{ 'Undo' if task.completed else 'Done' }}</button>
+                        </form>
+                        <form method="post" action="{{ url_for('delete_task', task_id=task.id) }}">
+                            <button type="submit" class="ghost-btn">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tasks yet. Add your first assignment.</p>
+    {% endif %}
+</div>
+{% endblock %}
