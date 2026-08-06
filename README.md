@@ -57,7 +57,3 @@ python app.py
 ```
 
 5. Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-
-## License
-
-MIT
