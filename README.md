@@ -6,11 +6,11 @@ A Flask homework planner that helps students organize assignments, track deadlin
 
 ## Features
 
-- **Home** — Quick entry point into the planner
-- **Dashboard** — Overview of total, completed, and pending tasks
-- **Homework** — Add, complete, and delete assignments with priority and due dates
-- **Calendar** — Deadline-focused view of upcoming work
-- **Pomodoro** — Focus / break study timer
+- **Home** : Quick entry point into the planner
+- **Dashboard** : Overview of total, completed, and pending tasks
+- **Homework** : Add, complete, and delete assignments with priority and due dates
+- **Calendar** : Deadline-focused view of upcoming work
+- **Pomodoro** : Focus / break study timer
 
 ## Tech stack
 
